@@ -1,56 +1,41 @@
-public class Penjual extends  {
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.tubes.dpbo.kel4;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-    private String Id_penjual;
-    private String Nama_penjual;
-    private String Alamat_penjual;
-
-    public Penjual(String id_penjual, String nama_penjual, String alamat_penjual) {
-        Id_penjual = id_penjual;
-        Nama_penjual = nama_penjual;
-        Alamat_penjual = alamat_penjual;
+abstract class Penjual extends Pengguna {
+    public Penjual(String id_pengguna, String username, String password, String nama, String alamat) {
+        super(id_pengguna, username, password, nama, alamat);
     }
 
-    public String getId_penjual() {
-        return Id_penjual;
+    @Override
+    public void Daftar(ArrayList<Pengguna> penggunaList) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Masukkan Username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Masukkan Password: ");
+        String password = scanner.nextLine();
+
+        System.out.print("Masukkan Nama: ");
+        String nama = scanner.nextLine();
+
+        System.out.print("Masukkan Alamat: ");
+        String alamat = scanner.nextLine();
+
+        String id_pengguna = "S" + (penggunaList.size() + 1); // Auto-generate ID
+
+        //Penjual penjualBaru = new Penjual(id_pengguna, username, password, nama, alamat);
+        //penggunaList.add(penjualBaru);
+
+        System.out.println("Pendaftaran berhasil! ID Anda: " + id_pengguna);
     }
 
-    public void setId_penjual(String id_penjual) {
-        Id_penjual = id_penjual;
-    }
-
-    public String getNama_penjual() {
-        return Nama_penjual;
-    }
-
-    public void setNama_penjual(String nama_penjual) {
-        Nama_penjual = nama_penjual;
-    }
-
-    public String getAlamat_penjual() {
-        return Alamat_penjual;
-    }
-
-    public void setAlamat_penjual(String alamat_penjual) {
-        Alamat_penjual = alamat_penjual;
-    }
-
-    public void Jual_barang(String id_produk, int jumlah, int harga){
-
-    }
-
-    public void Kirim_barang(String id_pesanan){
-
-    }
-
-    public void Mengatur_pengiriman(String id_pesanan, String jasa_pengiriman){
-
-    }
-
-    public void Mengatur_stok_barang(String id_produk, int jumlah){
-
-    }
-
-    public void Terima_pembayaran(String id_pesanan){
-
+    public boolean Masuk(String username, String password) {
+        return getUsername().equals(username) && getPassword().equals(password);
     }
 }

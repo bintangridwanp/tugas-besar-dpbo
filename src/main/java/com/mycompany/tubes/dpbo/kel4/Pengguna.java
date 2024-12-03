@@ -1,4 +1,9 @@
-public class Pengguna {
+package com.mycompany.tubes.dpbo.kel4;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public abstract class Pengguna {
     private String Id_pengguna;
     private String Username;
     private String Password;
@@ -52,30 +57,31 @@ public class Pengguna {
     public void setAlamat(String alamat) {
         Alamat = alamat;
     }
+    
+    public abstract void Daftar (ArrayList<Pengguna> PenggunaList);
+    public abstract boolean Masuk (String Username, String password);
 
-    public void Masuk(String username, String password){
-
-    }
-
-    public void Daftar(String username, String password, String email, String alamat){
-
-    }
-
-    public void Keluar(String id_pengguna){
-
-    }
-
-    public void Pencarian_barang(String nama_barang){
-
-    }
-
-    public void Validasi(String id_pengguna){
-
-    }
-
-    public void Edit_profile(String id_pengguna, String data_baru){
-
-    }
-
-
+//    public void Masuk(String username, String password){
+//
+//    }
+//
+//    public void Daftar(String username, String password, String email, String alamat){
+//
+//    }
+//
+//    public void Keluar(String id_pengguna){
+//
+//    }
+//
+//    public void Pencarian_barang(String nama_barang){
+//
+//    }
+//
+//    public void Validasi(String id_pengguna){
+//
+//    }
+//
+//    public void Edit_profile(String id_pengguna, String data_baru){
+//
+//    }
 }
