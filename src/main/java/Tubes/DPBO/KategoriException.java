@@ -8,9 +8,8 @@ package Tubes.DPBO;
  *
  * @author Zuhri
  */
-public interface Diskon {
-    public String getIdPengguna();
-    public void tambahDiskon(String Id_pengguna, int Jumlah_diskon);
-    public double calculateDiskon(double harga);
-    public void hapusDiskon(String Id_pengguna);
+public class KategoriException extends Exception {
+    public KategoriException(String message) {
+        super(message);
+    }
 }
