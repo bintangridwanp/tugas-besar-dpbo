@@ -3,10 +3,10 @@ package com.mycompany.tubes.dpbo.kel4;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class ListProduk {
+public class List_Produk {
     private HashMap<String, Produk> produkMap;
 
-    public ListProduk() {
+    public List_Produk() {
         this.produkMap = new HashMap<>();
     }
 
