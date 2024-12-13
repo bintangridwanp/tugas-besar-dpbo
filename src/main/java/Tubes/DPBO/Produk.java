@@ -1,41 +1,55 @@
 package Tubes.DPBO;
 
-public abstract class Produk {
-    private String Id_produk; // Gunakan camelCase untuk konsistensi dengan Java conventions
+public class Produk {
+    private String Id_produk;
     private String Nama_barang;
     private int Harga;
     private int Stok;
     private String Lokasi;
     private String Deskripsi;
 
-    // Constructor default
-    public Produk() {}
+    public Produk(){}
 
-    // Constructor dengan parameter
-    public Produk(String idProduk, String namaBarang, int harga, int stok, String lokasi, String deskripsi) {
-        this.Id_produk = idProduk;
-        this.Nama_barang = namaBarang;
-        this.Harga = harga;
-        this.Stok = stok;
-        this.Lokasi = lokasi;
-        this.Deskripsi = deskripsi;
+    public Produk(String Id_produk, String Nama_barang, int Harga, int Stok, String Lokasi, String Deskripsi) {
+        this.Id_produk = Id_produk;
+        this.Nama_barang = Nama_barang;
+        this.Harga = Harga;
+        this.Stok = Stok;
+        this.Lokasi = Lokasi;
+        this.Deskripsi = Deskripsi;
+    }
+    
+    public void Tambah_stock(int jumlah) {
+        if (jumlah < 0) {
+            throw new IllegalArgumentException("Jumlah stok yang ditambahkan tidak boleh negatif.");
+        }
+        this.Stok += jumlah;
     }
 
-    // Getter dan Setter
+    public void Kurangi_stock(int jumlah) {
+        if (jumlah < 0) {
+            throw new IllegalArgumentException("Jumlah stok yang dikurangi tidak boleh negatif.");
+        }
+        if (this.Stok < jumlah) {
+            throw new IllegalStateException("Stok tidak mencukupi untuk pengurangan.");
+        }
+        this.Stok -= jumlah;
+    }
+
     public String getId_produk() {
         return Id_produk;
     }
 
-    public void setId_produk(String idProduk) {
-        this.Id_produk = idProduk;
+    public void setId_produk(String Id_produk) {
+        this.Id_produk = Id_produk;
     }
 
     public String getNama_barang() {
         return Nama_barang;
     }
 
-    public void setNama_barang(String namaBarang) {
-        this.Nama_barang = namaBarang;
+    public void setNama_barang(String nama_barang) {
+        this.Nama_barang = nama_barang;
     }
 
     public int getHarga() {
@@ -44,8 +58,7 @@ public abstract class Produk {
 
     public void setHarga(int harga) {
         if (harga < 0) {
-            System.out.println("Harga tidak bisa negatif!");
-            return;
+            throw new IllegalArgumentException("Harga tidak boleh negatif.");
         }
         this.Harga = harga;
     }
@@ -56,8 +69,7 @@ public abstract class Produk {
 
     public void setStok(int stok) {
         if (stok < 0) {
-            System.out.println("Stok tidak bisa negatif!");
-            return;
+            throw new IllegalArgumentException("Stok tidak boleh negatif.");
         }
         this.Stok = stok;
     }
@@ -78,38 +90,15 @@ public abstract class Produk {
         this.Deskripsi = deskripsi;
     }
 
-    // Metode untuk menambah stok
-    public void Tambah_Stok(int jumlah) {
-        if (jumlah < 0) {
-            System.out.println("Jumlah penambahan tidak valid!");
-            return;
-        }
-        this.Stok += jumlah;
-    }
-
-    // Metode untuk mengurangi stok
-    public void Kurangi_Stok(int jumlah) {
-        if (jumlah < 0) {
-            System.out.println("Jumlah pengurangan tidak valid!");
-            return;
-        }
-        if (jumlah > this.Stok) {
-            System.out.println("Stok tidak cukup untuk pengurangan!");
-            return;
-        }
-        this.Stok -= jumlah;
-    }
-
-    // Override metode toString untuk menampilkan informasi produk
     @Override
     public String toString() {
-        return "================================"
-             + "\nId Produk   : " + this.Id_produk
-             + "\nNama Barang : " + this.Nama_barang
-             + "\nHarga       : Rp " + this.Harga
-             + "\nStok        : " + this.Stok
-             + "\nLokasi      : " + this.Lokasi
-             + "\nDeskripsi   : " + this.Deskripsi
-             + "\n================================";
+        return "================================\n" +
+               "Id Produk\t: " + this.Id_produk + "\n" +
+               "Nama Barang\t: " + this.Nama_barang + "\n" +
+               "Harga\t: " + this.Harga + "\n" +
+               "Stok\t: " + this.Stok + "\n" +
+               "Lokasi\t: " + this.Lokasi + "\n" +
+               "Deskripsi\t: " + this.Deskripsi + "\n" +
+               "================================";
     }
 }
