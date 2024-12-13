@@ -93,15 +93,15 @@ public class List_Produk {
         }
     }
 
-    public void Edit_Produk(String idProduk) {
+    public void Edit_Produk(String id_produk) {
         try {
-            if (!produkMap.containsKey(idProduk)) {
+            if (!produkMap.containsKey(id_produk)) {
                 System.out.println("ID Produk tidak ditemukan!");
                 return;
             }
 
             Scanner scanner = new Scanner(System.in);
-            Produk produk = produkMap.get(idProduk);
+            Produk produk = produkMap.get(id_produk);
 
             System.out.print("Inputkan Nama Barang: ");
             produk.setNama_barang(scanner.nextLine());
@@ -126,9 +126,9 @@ public class List_Produk {
         }
     }
 
-    public void Hapus_Produk(String idProduk) {
+    public void Hapus_Produk(String id_produk) {
         try {
-            if (produkMap.remove(idProduk) != null) {
+            if (produkMap.remove(id_produk) != null) {
                 System.out.println("Produk berhasil dihapus!");
             } else {
                 System.out.println("ID Produk tidak ditemukan!");
