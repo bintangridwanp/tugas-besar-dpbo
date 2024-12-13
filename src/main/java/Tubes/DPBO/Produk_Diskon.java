@@ -1,13 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Tubes.DPBO;
 
-/**
- *
- * @author Muh Zhafran
- */
-public class Produk_Diskon {
-    
+public class Produk_Diskon extends Produk {
+    private int Jumlah_diskon;
+
+    public Produk_Diskon() {
+        super(); // Memanggil konstruktor dari kelas Produk
+    }
+
+    public Produk_Diskon(String Id_produk, String Nama_barang, int Harga, int Stok, String Lokasi, String Deskripsi, int Jumlah_diskon) {
+        super(Id_produk, Nama_barang, Harga, Stok, Lokasi, Deskripsi); // Memanggil konstruktor dari kelas Produk
+        this.Jumlah_diskon = Jumlah_diskon;
+    }
+
+    public int getJumlah_diskon() {
+        return Jumlah_diskon;
+    }
+
+    public void setJumlah_diskon(int jumlah_diskon) {
+        if (jumlah_diskon < 0 || jumlah_diskon > 100) {
+            throw new IllegalArgumentException("Diskon harus antara 0 dan 100.");
+        }
+        this.Jumlah_diskon = jumlah_diskon;
+    }
+
+    // Metode untuk menghitung harga setelah diskon
+    public int Harga_Setelah_Diskon() {
+        return (int) (getHarga() * (1 - Jumlah_diskon / 100.0)); // Menghitung harga setelah diskon
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n" + 
+               "Jumlah Diskon\t: " + this.Jumlah_diskon + "%\n" +
+               "Harga Setelah Diskon\t: " + Harga_Setelah_Diskon() + "\n" + 
+               "================================";
+    }
 }
