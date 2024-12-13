@@ -20,10 +20,19 @@ public class Produk {
     }
     
     public void Tambah_stock(int jumlah) {
+        if (jumlah < 0) {
+            throw new IllegalArgumentException("Jumlah stok yang ditambahkan tidak boleh negatif.");
+        }
         this.Stok += jumlah;
     }
 
     public void Kurangi_stock(int jumlah) {
+        if (jumlah < 0) {
+            throw new IllegalArgumentException("Jumlah stok yang dikurangi tidak boleh negatif.");
+        }
+        if (this.Stok < jumlah) {
+            throw new IllegalStateException("Stok tidak mencukupi untuk pengurangan.");
+        }
         this.Stok -= jumlah;
     }
 
@@ -48,6 +57,9 @@ public class Produk {
     }
 
     public void setHarga(int harga) {
+        if (harga < 0) {
+            throw new IllegalArgumentException("Harga tidak boleh negatif.");
+        }
         this.Harga = harga;
     }
 
@@ -56,6 +68,9 @@ public class Produk {
     }
 
     public void setStok(int stok) {
+        if (stok < 0) {
+            throw new IllegalArgumentException("Stok tidak boleh negatif.");
+        }
         this.Stok = stok;
     }
 
