@@ -1,4 +1,4 @@
-package com.mycompany.tubes.dpbo.kel4;
+package Tubes.DPBO;
 
 public class Produk {
     private String Id_produk;

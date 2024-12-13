@@ -1,4 +1,4 @@
-package com.mycompany.tubes.dpbo.kel4;
+package Tubes.DPBO;
 
 import java.util.HashMap;
 import java.util.Scanner;
