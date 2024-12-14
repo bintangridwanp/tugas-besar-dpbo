@@ -5,6 +5,7 @@
 package Tubes.DPBO.Main;
 import Tubes.DPBO.Kategori;
 import Tubes.DPBO.KategoriException;
+import Tubes.DPBO.Produk;
 
 /**
  *
@@ -13,6 +14,9 @@ import Tubes.DPBO.KategoriException;
 public class TubesDpboKel4 {
 
     public static void main(String[] args) {
+        Produk produk = new Produk("P12", "HP", 0, 0, "bandung", "type hp oppo, murah"){
+        
+        };
         Kategori kategori = new Kategori();
 
         try {
