@@ -11,7 +11,7 @@ package Tubes.DPBO;
  */
 
 public interface Diskon {
-    public String getIdPengguna();
+    
     public void tambahDiskon(String Id_pengguna, int Jumlah_diskon);
     public double calculateDiskon(double harga);
     public void hapusDiskon(String Id_pengguna);
