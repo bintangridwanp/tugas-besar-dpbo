@@ -60,28 +60,9 @@ public abstract class Pengguna {
     
     public abstract void Daftar (ArrayList<Pengguna> PenggunaList);
     public abstract boolean Masuk (String Username, String password);
-
-//    public void Masuk(String username, String password){
-//
-//    }
-//
-//    public void Daftar(String username, String password, String email, String alamat){
-//
-//    }
-//
-//    public void Keluar(String id_pengguna){
-//
-//    }
-//
-//    public void Pencarian_barang(String nama_barang){
-//
-//    }
-//
-//    public void Validasi(String id_pengguna){
-//
-//    }
-//
-//    public void Edit_profile(String id_pengguna, String data_baru){
-//
-//    }
+    public abstract void Keluar(String Id_pengguna);
+    // public abstract void Pencarian_barang(String nama_barang);
+    public abstract void Validasi(String Id_pengguna);
+    // public abstract void Edit_profile(String Id_pengguna, String data_baru);
+    
 }

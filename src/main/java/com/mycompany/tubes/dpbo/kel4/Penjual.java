@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.tubes.dpbo.kel4;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-abstract class Penjual extends Pengguna {
-    public Penjual(String id_pengguna, String username, String password, String nama, String alamat) {
+
+public class Penjual extends Pengguna {
+
+    public Pembeli(String id_pengguna, String username, String password, String nama, String alamat) {
         super(id_pengguna, username, password, nama, alamat);
     }
 
@@ -29,8 +27,6 @@ abstract class Penjual extends Pengguna {
 
         String id_pengguna = "S" + (penggunaList.size() + 1); // Auto-generate ID
 
-        //Penjual penjualBaru = new Penjual(id_pengguna, username, password, nama, alamat);
-        //penggunaList.add(penjualBaru);
 
         System.out.println("Pendaftaran berhasil! ID Anda: " + id_pengguna);
     }
@@ -38,4 +34,28 @@ abstract class Penjual extends Pengguna {
     public boolean Masuk(String username, String password) {
         return getUsername().equals(username) && getPassword().equals(password);
     }
+    
+    
+    // function dan procedure penjual
+    public void Jual_barang(String Id_produk, int jumlah, int harga){
+        
+    }
+    
+    public void Kirim_barang(String Id_pesanan){
+        
+    }
+    
+    public void Mengatur_pengiriman(String Id_pesanan, String jasa_pengirimang){
+        
+    }
+    
+    public void Mengatur_stok_barang(String Id_produk, int jumlah){
+        
+    }
+    
+    public void Terima_pembayaran(String Id_pesanan){
+        
+    }
+    
+    
 }
