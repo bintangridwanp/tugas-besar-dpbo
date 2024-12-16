@@ -6,6 +6,7 @@ package Tubes.DPBO.Main;
 import Tubes.DPBO.Kategori;
 import Tubes.DPBO.KategoriException;
 import Tubes.DPBO.Produk;
+import Tubes.DPBO.Util.UtilityClass;
 
 /**
  *
@@ -14,6 +15,9 @@ import Tubes.DPBO.Produk;
 public class TubesDpboKel4 {
 
     public static void main(String[] args) {
+        UtilityClass util = new UtilityClass();
+        System.out.println(util.Waktu_Sekarang());
+        /*
         Produk produk = new Produk("P12", "HP", 0, 0, "bandung", "type hp oppo, murah"){
         
         };
@@ -35,6 +39,7 @@ public class TubesDpboKel4 {
 
         } catch (KategoriException e) {
             System.err.println("Error: " + e.getMessage());
-        }
+        } */
+        
     }
 }
