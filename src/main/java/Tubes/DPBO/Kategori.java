@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Tubes.DPBO;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -12,65 +12,62 @@ import java.util.ArrayList;
  */
 
 public class Kategori {
-    private String id_kategori;
-    private String nama_Kategori;
-    private String deskripsi_Kategori;
-    private HashMap<String, ArrayList<Produk>> kategoriList;
-    private Produk produk;
+    private String Nama_Kategori;
+    private HashMap<String, ArrayList<Produk>> List_Kategori;
 
     public Kategori() {
-        kategoriList = new HashMap<>();
+        List_Kategori = new HashMap<>();
     }
 
-    public void tambahKategori(String id_kategori, Produk produk) throws KategoriException {
-        if (id_kategori == null || id_kategori.isEmpty()) {
+    public void tambahKategori(String Nama_Kategori, Produk produk) throws KategoriException {
+        if (Nama_Kategori == null || Nama_Kategori.isEmpty()) {
             throw new KategoriException("id kategori tidak boleh kosong!");
         }
-        if (kategoriList.containsKey(id_kategori)) {
+        if (List_Kategori.containsKey(Nama_Kategori)) {
             throw new KategoriException("Kategori dengan id ini sudah ada!");
         } else {
-            kategoriList.put(id_kategori, new ArrayList<>());
+            List_Kategori.put(Nama_Kategori, new ArrayList<>());
         }
     
-        kategoriList.get(id_kategori).add(produk);
-        System.out.println("Produk berhasil ditambahkan ke kategori: " + id_kategori);
+        List_Kategori.get(Nama_Kategori).add(produk);
+        System.out.println("Produk berhasil ditambahkan ke kategori: " + Nama_Kategori);
     }
 
-    public void hapusKategori(String id_kategori) throws KategoriException {
-        if (!kategoriList.containsKey(id_kategori)) {
+    public void hapusKategori(String Nama_Kategori) throws KategoriException {
+        if (!List_Kategori.containsKey(Nama_Kategori)) {
             throw new KategoriException("Kategori dengan id ini tidak ditemukan!");
         }
-        kategoriList.remove(id_kategori);
+        List_Kategori.remove(Nama_Kategori);
     }
 
     /*
-    public void hapusProdukPadaKategori(String id_kategori, Produk produk) {
+    public void hapusProdukPadaKategori(String Nama_Kategori, Produk produk) {
         
     }
     
-    public void perbaruiKategori(String id_kategori, String deskripsiBaru) throws KategoriException {
-        if (!kategoriList.containsKey(id_kategori)) {
+    public void perbaruiKategori(String Nama_Kategori, String deskripsiBaru) throws KategoriException {
+        if (!List_Kategori.containsKey(Nama_Kategori)) {
             throw new KategoriException("Kategori dengan nama ini tidak ditemukan!");
         }
-        kategoriList.put(id_kategori, deskripsiBaru);
+        List_Kategori.put(Nama_Kategori, deskripsiBaru);
     }
 
-    public String getDeskripsi(String id_kategori) throws KategoriException {
-        if (!kategoriList.containsKey(id_kategori)) {
+    public String getDeskripsi(String Nama_Kategori) throws KategoriException {
+        if (!List_Kategori.containsKey(Nama_Kategori)) {
             throw new KategoriException("Kategori dengan nama ini tidak ditemukan!");
         }
-        return kategoriList.get(id_kategori);
+        return List_Kategori.get(Nama_Kategori);
     } */
 
     public void tampilkanKategori() throws KategoriException {
-        if (kategoriList.isEmpty()) {
+        if (List_Kategori.isEmpty()) {
             throw new KategoriException("Belum ada kategori yang terdaftar.");
         }
 
         System.out.println("Daftar Kategori dan Produk:");
-        for (String idKategori : kategoriList.keySet()) {
+        for (String idKategori : List_Kategori.keySet()) {
             System.out.println("Kategori: " + idKategori);
-            ArrayList<Produk> produkList = kategoriList.get(idKategori);
+            ArrayList<Produk> produkList = List_Kategori.get(idKategori);
             if (produkList.isEmpty()) {
                 throw new KategoriException("  Tidak ada produk dalam kategori ini.");
             } else {

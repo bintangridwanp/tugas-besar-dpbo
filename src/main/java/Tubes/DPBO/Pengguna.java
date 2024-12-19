@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pengguna {
+    /*
     private String Id_pengguna;
     private String Username;
     private String Password;
@@ -270,4 +271,5 @@ public class Pengguna {
         System.out.println("\nData Berhasil Diperbarui!");
         target.tampilkanData();
     }
+*/
 }

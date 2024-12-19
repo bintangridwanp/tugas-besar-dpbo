@@ -3,10 +3,12 @@
  */
 
 package Tubes.DPBO.Main;
+import Tubes.DPBO.Admin;
 import Tubes.DPBO.Kategori;
 import Tubes.DPBO.KategoriException;
 import Tubes.DPBO.Produk;
 import Tubes.DPBO.Util.UtilityClass;
+import java.util.Scanner;
 
 /**
  *
@@ -15,8 +17,15 @@ import Tubes.DPBO.Util.UtilityClass;
 public class TubesDpboKel4 {
 
     public static void main(String[] args) {
+        Scanner myObj = new Scanner(System.in);
+        Admin admin = new Admin();
         UtilityClass util = new UtilityClass();
         System.out.println(util.Waktu_Sekarang());
+        
+        String userName = util.getStringInput(myObj, "Masukkan Nama Pengguna \t-> ");
+        String password = util.getStringInput(myObj, "Masukkan Kata Sandi \t-> ");
+        
+        System.out.println(admin.login(userName, password));
         /*
         Produk produk = new Produk("P12", "HP", 0, 0, "bandung", "type hp oppo, murah"){
         
