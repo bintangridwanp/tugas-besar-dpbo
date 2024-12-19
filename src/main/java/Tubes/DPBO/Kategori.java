@@ -4,6 +4,7 @@
  */
 package Tubes.DPBO;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +14,8 @@ import java.util.HashMap;
 public class Kategori {
     private String id_kategori;
     private String nama_Kategori;
-    private String deskripsi_kategori;
-    private HashMap<String, Produk> kategoriList;
+    private String deskripsi_Kategori;
+    private HashMap<String, ArrayList<Produk>> kategoriList;
     private Produk produk;
 
     public Kategori() {
@@ -27,8 +28,12 @@ public class Kategori {
         }
         if (kategoriList.containsKey(id_kategori)) {
             throw new KategoriException("Kategori dengan id ini sudah ada!");
+        } else {
+            kategoriList.put(id_kategori, new ArrayList<>());
         }
-        kategoriList.put(id_kategori, produk);
+    
+        kategoriList.get(id_kategori).add(produk);
+        System.out.println("Produk berhasil ditambahkan ke kategori: " + id_kategori);
     }
 
     public void hapusKategori(String id_kategori) throws KategoriException {
@@ -39,6 +44,10 @@ public class Kategori {
     }
 
     /*
+    public void hapusProdukPadaKategori(String id_kategori, Produk produk) {
+        
+    }
+    
     public void perbaruiKategori(String id_kategori, String deskripsiBaru) throws KategoriException {
         if (!kategoriList.containsKey(id_kategori)) {
             throw new KategoriException("Kategori dengan nama ini tidak ditemukan!");
@@ -51,17 +60,24 @@ public class Kategori {
             throw new KategoriException("Kategori dengan nama ini tidak ditemukan!");
         }
         return kategoriList.get(id_kategori);
-    }
+    } */
 
-    public void tampilkanKategori() {
+    public void tampilkanKategori() throws KategoriException {
         if (kategoriList.isEmpty()) {
-            System.out.println("Belum ada kategori yang terdaftar.");
-            return;
+            throw new KategoriException("Belum ada kategori yang terdaftar.");
         }
-        System.out.println("Daftar Kategori:");
-        for (String id_kategori : kategoriList.keySet()) {
-            System.out.println("- " + id_kategori + ": " + kategoriList.get(id_kategori));
+
+        System.out.println("Daftar Kategori dan Produk:");
+        for (String idKategori : kategoriList.keySet()) {
+            System.out.println("Kategori: " + idKategori);
+            ArrayList<Produk> produkList = kategoriList.get(idKategori);
+            if (produkList.isEmpty()) {
+                throw new KategoriException("  Tidak ada produk dalam kategori ini.");
+            } else {
+                for (Produk produk : produkList) {
+                    System.out.println(produk.toString());
+                }
+            }
         }
     }
-    */
 }
