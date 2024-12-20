@@ -9,11 +9,9 @@ import Tubes.DPBO.KategoriException;
 import Tubes.DPBO.Produk;
 import Tubes.DPBO.Util.UtilityClass;
 import java.util.Scanner;
+import Tubes.DPBO.Pengguna;
+import java.util.ArrayList;
 
-/**
- *
- * @author Muh Zhafran
- */
 public class TubesDpboKel4 {
 
     public static void main(String[] args) {
@@ -21,6 +19,11 @@ public class TubesDpboKel4 {
         Admin admin = new Admin();
         UtilityClass util = new UtilityClass();
         System.out.println(util.Waktu_Sekarang());
+        ArrayList<Pengguna> daftarPengguna = new ArrayList<>();
+        Pengguna pengguna = new Pengguna();
+
+        // menu mau daftar pengguna baru
+        daftarPengguna.add(pengguna.Daftar());
         
         String userName = util.getStringInput(myObj, "Masukkan Nama Pengguna \t-> ");
         String password = util.getStringInput(myObj, "Masukkan Kata Sandi \t-> ");

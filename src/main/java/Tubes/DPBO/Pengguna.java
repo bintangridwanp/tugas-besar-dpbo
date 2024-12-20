@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pengguna {
-    /*
     private String Id_pengguna;
     private String Username;
     private String Password;
@@ -14,6 +13,9 @@ public class Pengguna {
     private String Alamat;
     private String Tanggal_lahir;
     private boolean isVerifikasi;
+    // ArrayList<Pengguna> penggunaList = new ArrayList<>();
+
+    public Pengguna() {};
 
     public Pengguna(String Id_pengguna, String Username, String Password, String Nama_depan, String Nama_belakang, String Email, String Alamat, String Tanggal_lahir, boolean isVerifikasi) {
         this.Id_pengguna = Id_pengguna;
@@ -98,9 +100,8 @@ public class Pengguna {
     public void setIsVerifikasi(boolean isVerifikasi) {
         this.isVerifikasi = isVerifikasi;
     }
-
-    ArrayList<Pengguna> penggunaList = new ArrayList<>(); // ArrayList untuk menyimpan data pengguna
-    public void Daftar (ArrayList<Pengguna> PenggunaList){
+    
+    public Pengguna Daftar (){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("=== Form Pendaftaran Pengguna ===");
@@ -127,16 +128,18 @@ public class Pengguna {
             String email = scanner.nextLine();
 
             // Generate ID unik untuk pengguna baru
-            String id_pengguna = "U" + (penggunaList.size() + 1);
+            String id_pengguna = "ID" + ( ...  .size() + 1);
 
             // Membuat objek Pengguna dan menambahkannya ke dalam ArrayList
             Pengguna penggunaBaru = new Pengguna(Id_pengguna, Username, Password, Nama_depan, Nama_belakang, Alamat, Email,  Tanggal_lahir );
-            penggunaList.add(penggunaBaru);
+            // this.penggunaList.add(penggunaBaru);
+            // penggunaList.add(penggunaBaru);
+            
 
             System.out.println("Pendaftaran berhasil! ID Anda: " + id_pengguna);
             System.out.println("-----------------------------------------");
-            
 
+            return penggunaBaru;
     };
 
     public boolean Masuk(String username, String password) {
@@ -161,9 +164,11 @@ public class Pengguna {
         }   
     };
 
-    public void Pencarian_barang(String nama_barang){
+    public void Pencarian_barang(String nama_barang) {
+
+        //input dlu
         boolean ditemukan = false;
-        for (String produk : daftarProduk) {
+        for (String produk : /* ambil dari daftar produk di class penjualan produk */ ) {
             if (produk.toLowerCase().contains(nama_barang.toLowerCase())) { 
                 System.out.println("Barang ditemukan: " + produk);
                 ditemukan = true;
@@ -174,102 +179,96 @@ public class Pengguna {
         }
     };
 
-    public void Verifikasi(String Id_pengguna, String inputKode){
-        // verifikasi menggunakan email dan code otp
-        String kodeOTP = "123456"; // kode otp di kirim dari class admin
-        if (this.Email.equals(email)) { // Pastikan variabel instance Email ada
-            System.out.println("Kode OTP telah dikirim ke: " + email);
-            System.out.println("Masukkan Kode OTP: ");
-            if (inputKode.equals(kodeOTP)) {
-                this.isVerifikasi = true;
-                System.out.println("Verifikasi berhasil! Akun Anda sekarang terverifikasi.");
-                return true;
-            } else {
-                System.out.println("Kode OTP salah. Verifikasi gagal.");
-                return false;
-            }
-        }
-        System.out.println("Email tidak ditemukan dalam sistem.");
-        return false;
-    };
+    public void Verifikasi(String Email, String inputKode){
+        Scanner scanner = new Scanner(System.in);
 
-    public void Edit_profile(ArrayList<Pengguna> penggunaList1, String Id_pengguna){
-         // Cari pengguna berdasarkan ID
-        Pengguna target = null;
-        for (Pengguna p : penggunaList) {
-            if (p.getIdPengguna().equals(id_pengguna)) {
-                target = p;
-                break;
-            }
-        }
+        System.out.println("Masukan email anda: ");
+        String email = scanner.nextLine();
 
-        if (target == null) {
-            System.out.println("ID Pengguna tidak ditemukan.");
-            return;
-        }
+       // buat kondisi untuk mengecek email yang di input kan sesuai dengan di data pengguna email.
 
-        // Menampilkan data lama
-        System.out.println("\nData Lama:");
-        target.tampilkanData();
+        // jika sama dan ada email nya, kasih pilihan kirim kode otp dan ambil yang ada di class admin.
 
-        System.out.println("Pilih data yang ingin diubah:");
-        System.out.println("1. Username");
-        System.out.println("2. Nama Depan");
-        System.out.println("3. Nama Akhir");
-        System.out.println("4. Alamat");
-        System.out.println("5. Tanggal Lahir");
-        System.out.println("6. Email");
-        System.out.println("7. Semua Data");
-        System.out.print("Masukkan pilihan Anda: ");
-        int pilihan = Integer.parseInt(scanner.nextLine());
-
-        // Edit data sesuai pilihan
-        switch (pilihan) {
-            case 1:
-                System.out.print("Masukkan Username baru: ");
-                target.setUsername(scanner.nextLine());
-                break;
-            case 2:
-                System.out.print("Masukkan Nama Depan baru: ");
-                target.setNamaDepan(scanner.nextLine());
-                break;
-            case 3:
-                System.out.print("Masukkan Nama Akhir baru: ");
-                target.setNamaAkhir(scanner.nextLine());
-                break;
-            case 4:
-                System.out.print("Masukkan Alamat baru: ");
-                target.setAlamat(scanner.nextLine());
-                break;
-            case 5:
-                System.out.print("Masukkan Tanggal Lahir baru: ");
-                target.setTanggalLahir(scanner.nextLine());
-                break;
-            case 6:
-                System.out.print("Masukkan Email baru: ");
-                target.setEmail(scanner.nextLine());
-                break;
-            case 7:
-                System.out.print("Masukkan Username baru: ");
-                target.setUsername(scanner.nextLine());
-                System.out.print("Masukkan Nama Depan baru: ");
-                target.setNamaDepan(scanner.nextLine());
-                System.out.print("Masukkan Nama Akhir baru: ");
-                target.setNamaAkhir(scanner.nextLine());
-                System.out.print("Masukkan Alamat baru: ");
-                target.setAlamat(scanner.nextLine());
-                System.out.print("Masukkan Tanggal Lahir baru: ");
-                target.setTanggalLahir(scanner.nextLine());
-                System.out.print("Masukkan Email baru: ");
-                target.setEmail(scanner.nextLine());
-                break;
-            default:
-                System.out.println("Pilihan tidak valid.");
-                return;
-        }
-
-        System.out.println("\nData Berhasil Diperbarui!");
-        target.tampilkanData();
+        // jika sudah pilih kirim, cocok kan kode otp yang di kirim dengan inoutan pengguna.
+       
     }
-*/
-}
+
+//     public void Edit_profile(ArrayList<Pengguna> penggunaList1, String Id_pengguna){
+//          // Cari pengguna berdasarkan ID
+//         Pengguna target = null;
+//         for (Pengguna p : penggunaList) { // daftar pengguna
+//             if (p.getIdPengguna().equals(id_pengguna)) {
+//                 target = p;
+//                 break;
+//             }
+//         }
+
+//         if (target == null) {
+//             System.out.println("ID Pengguna tidak ditemukan.");
+//             return;
+//         }
+
+//         // Menampilkan data lama
+//         System.out.println("\nData Lama:");
+//         target.tampilkanData();
+
+//         System.out.println("Pilih data yang ingin diubah:");
+//         System.out.println("1. Username");
+//         System.out.println("2. Nama Depan");
+//         System.out.println("3. Nama Akhir");
+//         System.out.println("4. Alamat");
+//         System.out.println("5. Tanggal Lahir");
+//         System.out.println("6. Email");
+//         System.out.println("7. Semua Data");
+//         System.out.print("Masukkan pilihan Anda: ");
+//         int pilihan = Integer.parseInt(scanner.nextLine());
+
+//         // Edit data sesuai pilihan
+//         switch (pilihan) {
+//             case 1:
+//                 System.out.print("Masukkan Username baru: ");
+//                 target.setUsername(scanner.nextLine());
+//                 break;
+//             case 2:
+//                 System.out.print("Masukkan Nama Depan baru: ");
+//                 target.setNamaDepan(scanner.nextLine());
+//                 break;
+//             case 3:
+//                 System.out.print("Masukkan Nama Akhir baru: ");
+//                 target.setNamaAkhir(scanner.nextLine());
+//                 break;
+//             case 4:
+//                 System.out.print("Masukkan Alamat baru: ");
+//                 target.setAlamat(scanner.nextLine());
+//                 break;
+//             case 5:
+//                 System.out.print("Masukkan Tanggal Lahir baru: ");
+//                 target.setTanggalLahir(scanner.nextLine());
+//                 break;
+//             case 6:
+//                 System.out.print("Masukkan Email baru: ");
+//                 target.setEmail(scanner.nextLine());
+//                 break;
+//             case 7:
+//                 System.out.print("Masukkan Username baru: ");
+//                 target.setUsername(scanner.nextLine());
+//                 System.out.print("Masukkan Nama Depan baru: ");
+//                 target.setNamaDepan(scanner.nextLine());
+//                 System.out.print("Masukkan Nama Akhir baru: ");
+//                 target.setNamaAkhir(scanner.nextLine());
+//                 System.out.print("Masukkan Alamat baru: ");
+//                 target.setAlamat(scanner.nextLine());
+//                 System.out.print("Masukkan Tanggal Lahir baru: ");
+//                 target.setTanggalLahir(scanner.nextLine());
+//                 System.out.print("Masukkan Email baru: ");
+//                 target.setEmail(scanner.nextLine());
+//                 break;
+//             default:
+//                 System.out.println("Pilihan tidak valid.");
+//                 return;
+//         }
+
+//         System.out.println("\nData Berhasil Diperbarui!");
+//         target.tampilkanData();
+//     }
+// }

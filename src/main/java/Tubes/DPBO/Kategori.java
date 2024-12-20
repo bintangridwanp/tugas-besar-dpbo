@@ -5,6 +5,7 @@
 package Tubes.DPBO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -38,6 +39,16 @@ public class Kategori {
             throw new KategoriException("Kategori dengan id ini tidak ditemukan!");
         }
         List_Kategori.remove(Nama_Kategori);
+    }
+
+    public void tambah_kategori_keProduk(String Nama_Kategori, Produk produk) {
+        if (List_Kategori.containsKey(Nama_Kategori)) {
+            List_Kategori.get(Nama_Kategori).add(produk);
+        } else {
+            ArrayList<Produk> produkList = new ArrayList<>();
+            produkList.add(produk);
+            List_Kategori.put(Nama_Kategori, produkList);
+        }
     }
 
     /*

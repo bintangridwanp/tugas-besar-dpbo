@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Tubes.DPBO;
+import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -22,6 +24,24 @@ public class Admin {
         }
         
         return "Login Gagal username salah";   
+    }
+
+    public int otp() {
+        Random otp = new Random();
+        return otp.nextInt(90000) + 10000;
+    }
+
+    public void Verifikasi_otp(int otp) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Masukkan OTP yang diterima: ");
+        int userInput = scanner.nextInt();
+
+        if (userInput == otp) {
+            System.out.println("Verifikasi berhasil!");
+        } else {
+            System.out.println("Verifikasi gagal! OTP tidak cocok.");
+        }
     }
     
 }
