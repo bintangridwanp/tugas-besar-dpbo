@@ -59,7 +59,15 @@ public class List_Produk {
         System.out.println("Daftar produk yang ada:");
         int nomor = 1;
         for (Produk produk : produkList) {
-            System.out.println(nomor + ". " + produk.getNama_barang() + " ***** " + produk.getHarga() + " ***** " + produk.getLokasi() + " ***** " + produk.getDeskripsi());
+            System.out.print(nomor + ". Id Produk : " + produk.getId_produk());
+            System.out.println(
+                    "\n[Nama] " + produk.getNama_barang()
+                    + "\n[Harga] " + produk.getHarga()
+                    + "\n[Stok] " + produk.getStok()
+                    + "\n[Lokasi] " + produk.getLokasi()
+                    + "\n[Deskripsi] " + produk.getDeskripsi()
+                    + "\n"
+            );
             nomor++;
         }
     }
