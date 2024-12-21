@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Tubes.DPBO;
+import Tubes.DPBO.Util.UtilityClass;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  *
@@ -15,23 +17,23 @@ import java.util.Map;
 public class Kategori {
     private String Nama_Kategori;
     private HashMap<String, ArrayList<Produk>> List_Kategori;
+    
+    UtilityClass util = new UtilityClass();
+    Scanner myObj = new Scanner(System.in);
 
     public Kategori() {
         List_Kategori = new HashMap<>();
     }
 
-    public void tambahKategori(String Nama_Kategori, Produk produk) throws KategoriException {
-        if (Nama_Kategori == null || Nama_Kategori.isEmpty()) {
-            throw new KategoriException("id kategori tidak boleh kosong!");
-        }
+    public void tambahKategori(String Nama_Kategori) throws KategoriException {
         if (List_Kategori.containsKey(Nama_Kategori)) {
-            throw new KategoriException("Kategori dengan id ini sudah ada!");
+            throw new KategoriException("Kategori dengan nama : " + Nama_Kategori + " sudah ada!");
         } else {
             List_Kategori.put(Nama_Kategori, new ArrayList<>());
         }
     
-        List_Kategori.get(Nama_Kategori).add(produk);
-        System.out.println("Produk berhasil ditambahkan ke kategori: " + Nama_Kategori);
+        List_Kategori.get(Nama_Kategori).add(null);
+        System.out.println("Kategori " + Nama_Kategori +  " berhasil ditambahkan!");
     }
 
     public void hapusKategori(String Nama_Kategori) throws KategoriException {
@@ -41,14 +43,15 @@ public class Kategori {
         List_Kategori.remove(Nama_Kategori);
     }
 
-    public void tambah_kategori_keProduk(String Nama_Kategori, Produk produk) {
-        if (List_Kategori.containsKey(Nama_Kategori)) {
-            List_Kategori.get(Nama_Kategori).add(produk);
-        } else {
-            ArrayList<Produk> produkList = new ArrayList<>();
-            produkList.add(produk);
-            List_Kategori.put(Nama_Kategori, produkList);
+    public void tambahProdukKeKategori(Produk produk) {
+        System.out.println("Pilih Kategori");
+        for (Map.Entry<String, ArrayList<Produk>> entry : List_Kategori.entrySet()) {
+            Object key = entry.getKey();
+            System.out.println("-> " + key);
         }
+        String input = util.getStringInput(myObj, "Masukkan nama Kategori : ");
+        List_Kategori.get(input).add(produk);
+        
     }
 
     /*

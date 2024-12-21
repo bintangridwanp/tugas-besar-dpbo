@@ -20,8 +20,31 @@ public class UtilityClass {
         return formattedDate;
     }
     
-    public static String getStringInput(Scanner scanner, String message) {
-        System.out.print(message);
-        return scanner.nextLine();
+    public String getStringInput(Scanner scanner, String message) {
+        while (true) {
+            try {
+                System.out.print(message);
+                return scanner.nextLine();
+            } catch (NullPointerException e) {
+                System.out.println("Input tidak valid. Harap masukkan lagi.");
+            } catch (Exception e) {
+                System.out.println("Ada kesalahan silakan coba lagi");
+            }
+        }     
+    }
+    
+    public int getIntInput(Scanner scanner, String message) {
+        while (true) {
+            try {
+                System.out.print(message);
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Input tidak valid. Harap masukkan angka.");
+            } catch (NullPointerException e) {
+                System.out.println("Input tidak valid. Harap masukkan lagi.");
+            } catch (Exception e) {
+                System.out.println("Ada kesalahan silakan coba lagi");
+            }
+        }
     }
 }

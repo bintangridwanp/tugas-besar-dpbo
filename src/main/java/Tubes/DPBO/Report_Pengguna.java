@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Tubes.DPBO;
+import java.util.LinkedList;
 
 /**
  *
@@ -12,14 +13,15 @@ public class Report_Pengguna {
     private String Id_report;
     private String Deskripsi_kasus;
     private String Waktu_pelaporan;
+    private LinkedList<Report_Pengguna> ListLaporan;
 
-    public Report_Pengguna(String Id_report, String Deskripsi_kasus, String Waktu_pelaporan) {
-        this.Id_report = Id_report;
-        this.Deskripsi_kasus = Deskripsi_kasus;
-        this.Waktu_pelaporan = Waktu_pelaporan;
-    }
+    public Report_Pengguna() {}
     
     public void Buat_Laporan(String Id_report, String Deskripsi_kasus, String Waktu_pelaporan, String Id_penjual, String Id_pengguna){
+        
+    }
+    
+    public void ViewLaporan() {
         
     }
 

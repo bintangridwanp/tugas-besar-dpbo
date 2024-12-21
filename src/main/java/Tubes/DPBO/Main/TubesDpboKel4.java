@@ -9,26 +9,23 @@ import Tubes.DPBO.KategoriException;
 import Tubes.DPBO.Produk;
 import Tubes.DPBO.Util.UtilityClass;
 import java.util.Scanner;
-import Tubes.DPBO.Pengguna;
+// import Tubes.DPBO.Pengguna;
 import java.util.ArrayList;
 
 public class TubesDpboKel4 {
 
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
-        Admin admin = new Admin();
         UtilityClass util = new UtilityClass();
+        Admin admin = new Admin();
         System.out.println(util.Waktu_Sekarang());
-        ArrayList<Pengguna> daftarPengguna = new ArrayList<>();
-        Pengguna pengguna = new Pengguna();
+        /* ArrayList<Pengguna> daftarPengguna = new ArrayList<>();
+        Pengguna pengguna = new Pengguna(); */
 
-        // menu mau daftar pengguna baru
-        daftarPengguna.add(pengguna.Daftar());
+        admin.HalamanAdmin();
         
-        String userName = util.getStringInput(myObj, "Masukkan Nama Pengguna \t-> ");
-        String password = util.getStringInput(myObj, "Masukkan Kata Sandi \t-> ");
-        
-        System.out.println(admin.login(userName, password));
+        /* // menu mau daftar pengguna baru
+        daftarPengguna.add(pengguna.Daftar()); */
         /*
         Produk produk = new Produk("P12", "HP", 0, 0, "bandung", "type hp oppo, murah"){
         

@@ -14,9 +14,9 @@ public class Pengguna {
     private String Tanggal_lahir;
     private boolean isVerifikasi;
     // ArrayList<Pengguna> penggunaList = new ArrayList<>();
-
+    
     public Pengguna() {};
-
+    
     public Pengguna(String Id_pengguna, String Username, String Password, String Nama_depan, String Nama_belakang, String Email, String Alamat, String Tanggal_lahir, boolean isVerifikasi) {
         this.Id_pengguna = Id_pengguna;
         this.Username = Username;
@@ -28,7 +28,7 @@ public class Pengguna {
         this.Tanggal_lahir = Tanggal_lahir;
         this.isVerifikasi = isVerifikasi;
     }
-
+    /*
     public String getId_pengguna() {
         return Id_pengguna;
     }
@@ -165,10 +165,9 @@ public class Pengguna {
     };
 
     public void Pencarian_barang(String nama_barang) {
-
         //input dlu
         boolean ditemukan = false;
-        for (String produk : /* ambil dari daftar produk di class penjualan produk */ ) {
+        for (String produk :  ambil dari daftar produk di class penjualan produk  ) {
             if (produk.toLowerCase().contains(nama_barang.toLowerCase())) { 
                 System.out.println("Barang ditemukan: " + produk);
                 ditemukan = true;
@@ -270,5 +269,5 @@ public class Pengguna {
 
 //         System.out.println("\nData Berhasil Diperbarui!");
 //         target.tampilkanData();
-//     }
-// }
+//     } */
+}
