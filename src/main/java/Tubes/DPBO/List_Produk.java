@@ -47,7 +47,7 @@ public class List_Produk {
     }
 
     // Menampilkan daftar produk secara random
-    public void Tampilkan_Produk_Secara_Random() {
+    public void Tampilkan_Produk() {
         if (produkList.isEmpty()) {
             System.out.println("Tidak ada produk yang tersedia.");
             return;
