@@ -15,18 +15,15 @@ public class Admin {
     private final String Nama_Pengguna = "Admin123";
     private final String Kata_Sandi = "Admin123";
     
-    UtilityClass util = new UtilityClass();
     Scanner myObj = new Scanner(System.in);
     Kategori kategori = new Kategori();
     
     public String login(String Nama_Pengguna, String Kata_Sandi) {
-        if (this.Nama_Pengguna.equals(Nama_Pengguna)) {
-            if (this.Kata_Sandi.equals(Kata_Sandi)) {
-                return "Login Berhasil";
-            }
-            return "Login Gagal, kata sandi salah";
+        if (this.Nama_Pengguna.equals(Nama_Pengguna) && this.Kata_Sandi.equals(Kata_Sandi)) {
+            return "Login Berhasil";
         }
-        return "Login Gagal, username salah";
+        
+        return "Login Gagal, Silakan Coba Lagi";
     }
     
     public String keluar() {
@@ -40,7 +37,7 @@ public class Admin {
     }
 
     public void Verifikasi_otp(int otp) {
-        int userInput = util.getIntInput(myObj, "Masukkan OTP yang diterima: ");
+        int userInput = UtilityClass.getIntInput(myObj, "Masukkan OTP yang diterima: ");
 
         if (userInput == otp) {
             System.out.println("Verifikasi berhasil!");
@@ -50,7 +47,7 @@ public class Admin {
     }
     
     public void tambah_kategori() {
-        String namaKategori = util.getStringInput(myObj, "Masukkan Nama Kategori : ");
+        String namaKategori = UtilityClass.getStringInput(myObj, "Masukkan Nama Kategori : ");
         try {
             kategori.tambahKategori(namaKategori);
         } catch (KategoriException e) {
@@ -68,9 +65,9 @@ public class Admin {
         while (true) {
             while (true) {
                 System.out.println("\nTekan enter untuk keluar!");
-                String userName = util.getStringInput(myObj, "Masukkan Nama Pengguna \t: ");
+                String userName = UtilityClass.getStringInput(myObj, "Masukkan Nama Pengguna \t: ");
                 if (userName.isEmpty()) {System.exit(0);}
-                String password = util.getStringInput(myObj, "Masukkan Kata Sandi \t: ");
+                String password = UtilityClass.getStringInput(myObj, "Masukkan Kata Sandi \t: ");
                 String loginResult = login(userName, password);
                 if (loginResult.equals("Login Berhasil")) {
                     System.out.println(loginResult);
@@ -86,7 +83,7 @@ public class Admin {
                 System.out.println("2. Ganti Status Laporan");
                 System.out.println("3. Keluar");
 
-                int pilihan = util.getIntInput(myObj, "Pilih opsi: ");
+                int pilihan = UtilityClass.getIntInput(myObj, "Pilih opsi: ");
 
                 switch (pilihan) {
                     case 1 -> tambah_kategori();

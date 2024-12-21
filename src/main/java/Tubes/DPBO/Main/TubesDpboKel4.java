@@ -16,9 +16,8 @@ public class TubesDpboKel4 {
 
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
-        UtilityClass util = new UtilityClass();
         Admin admin = new Admin();
-        System.out.println(util.Waktu_Sekarang());
+        System.out.println(UtilityClass.Waktu_Sekarang());
         /* ArrayList<Pengguna> daftarPengguna = new ArrayList<>();
         Pengguna pengguna = new Pengguna(); */
 

@@ -13,14 +13,14 @@ import java.time.format.DateTimeFormatter;
  */
 public class UtilityClass {
     
-    public String Waktu_Sekarang() {
+    public static String Waktu_Sekarang() {
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String formattedDate = myDateObj.format(myFormatObj);
         return formattedDate;
     }
-    
-    public String getStringInput(Scanner scanner, String message) {
+
+    public static String getStringInput(Scanner scanner, String message) {
         while (true) {
             try {
                 System.out.print(message);
@@ -33,7 +33,7 @@ public class UtilityClass {
         }     
     }
     
-    public int getIntInput(Scanner scanner, String message) {
+    public static int getIntInput(Scanner scanner, String message) {
         while (true) {
             try {
                 System.out.print(message);
