@@ -6,12 +6,14 @@ package Tubes.DPBO.Util;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 /**
  *
  * @author Zuhri
  */
 public class UtilityClass {
+    private static HashMap<String, Integer> prefixCounters = new HashMap<>();
     
     public static String Waktu_Sekarang() {
         LocalDateTime myDateObj = LocalDateTime.now();
@@ -46,5 +48,14 @@ public class UtilityClass {
                 System.out.println("Ada kesalahan silakan coba lagi");
             }
         }
+    }
+    
+     public static String generateID(String prefix) {
+        prefix = prefix.toUpperCase();
+        prefixCounters.putIfAbsent(prefix, 0);
+        int nextNumber = prefixCounters.get(prefix) + 1;
+        prefixCounters.put(prefix, nextNumber);
+        String formattedNumber = String.format("%02d", nextNumber);
+        return prefix + "-" + formattedNumber;
     }
 }
