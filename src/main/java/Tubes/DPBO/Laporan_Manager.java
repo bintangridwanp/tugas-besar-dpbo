@@ -32,7 +32,7 @@ public class Laporan_Manager {
             Report_Pengguna.ReportStatus.PENDING
         );
 
-        ListLaporanBaru.add(laporan);
+        ListLaporanBaru.addLast(laporan);
         System.out.println("Laporan berhasil dibuat dengan ID: " + idLaporan);
     }
 

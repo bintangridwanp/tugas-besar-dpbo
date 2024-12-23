@@ -15,8 +15,9 @@ public class Admin {
     private final String Nama_Pengguna = "Admin123";
     private final String Kata_Sandi = "Admin123";
     
-    Scanner myObj = new Scanner(System.in);
-    Kategori kategori = new Kategori();
+    private Scanner myObj = new Scanner(System.in);
+    private Kategori kategori = new Kategori();
+    private Laporan_Manager manager = new Laporan_Manager();
     
     private String login(String Nama_Pengguna, String Kata_Sandi) {
         if (this.Nama_Pengguna.equals(Nama_Pengguna) && this.Kata_Sandi.equals(Kata_Sandi)) {
@@ -56,9 +57,6 @@ public class Admin {
     }
     
     private void UpdateStatusLaporan() {
-        
-        Laporan_Manager manager = new Laporan_Manager();
-        manager.inisialisasiLaporanDummy();
         manager.ViewLaporan();
         
         System.out.println("\nPilih opsi pembaruan:");
@@ -123,6 +121,8 @@ public class Admin {
 }
     
     public void HalamanAdmin() {
+        // tes dengan data
+        manager.inisialisasiLaporanDummy();
         while (true) {
             while (true) {
                 System.out.println("\nTekan enter untuk keluar!");

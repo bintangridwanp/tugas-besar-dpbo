@@ -3,10 +3,7 @@
  */
 
 package Tubes.DPBO.Main;
-import Tubes.DPBO.Admin;
-import Tubes.DPBO.Kategori;
-import Tubes.DPBO.KategoriException;
-import Tubes.DPBO.Produk;
+import Tubes.DPBO.*;
 import Tubes.DPBO.Util.UtilityClass;
 import java.util.Scanner;
 // import Tubes.DPBO.Pengguna;
