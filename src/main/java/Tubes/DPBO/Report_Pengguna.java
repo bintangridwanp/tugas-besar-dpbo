@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Tubes.DPBO;
+import Tubes.DPBO.Util.UtilityClass;
 import java.util.LinkedList;
 
 /**
@@ -17,8 +18,10 @@ public class Report_Pengguna {
 
     public Report_Pengguna() {}
     
-    public void Buat_Laporan(String Id_report, String Deskripsi_kasus, String Waktu_pelaporan, String Id_penjual, String Id_pengguna){
-        
+    public void Buat_Laporan(String idPenggunaPelapor, String idPenggunaTerlapor, String deskripsiLaporan){
+        //String waktuPelaporan = UtilityClass.Waktu_Sekarang();
+        //idLaporan = 
+        //StatusLaporan
     }
     
     public void ViewLaporan() {

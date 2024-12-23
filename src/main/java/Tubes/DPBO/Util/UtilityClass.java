@@ -47,4 +47,16 @@ public class UtilityClass {
             }
         }
     }
+    
+     public static String generateID(String prefix) {
+        if (prefix == null || prefix.isEmpty()) {
+            throw new IllegalArgumentException("Prefix tidak boleh kosong atau null");
+        }
+
+        prefix = prefix.toUpperCase();
+
+        long timestamp = System.currentTimeMillis();
+
+        return prefix + "-" + timestamp;
+    }
 }
