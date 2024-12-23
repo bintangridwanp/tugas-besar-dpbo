@@ -55,10 +55,72 @@ public class Admin {
         }
     }
     
-    private void UpdateStatusLaporan(int StatusLaporan) {
-        Report_Pengguna ReportPengguna = new Report_Pengguna();
+    private void UpdateStatusLaporan() {
         
+        Laporan_Manager manager = new Laporan_Manager();
+        manager.inisialisasiLaporanDummy();
+        manager.ViewLaporan();
+        
+        System.out.println("\nPilih opsi pembaruan:");
+        System.out.println("1. Ubah status semua laporan");
+        System.out.println("2. Ubah status laporan berdasarkan ID");
+        
+        int pilihan = UtilityClass.getIntInput(myObj, "Masukkan pilihan: ");
+
+        switch (pilihan) {
+            case 1 -> {
+                System.out.println("Status yang akan diterapkan ke semua laporan:");
+                System.out.println("1. PENDING");
+                System.out.println("2. IN_PROGRESS");
+                System.out.println("3. RESOLVED");
+                System.out.println("4. CLOSED");
+
+                int statusPilihanSemua = UtilityClass.getIntInput(myObj, "Pilih status: ");
+                Report_Pengguna.ReportStatus statusSemua = getStatusFromChoice(statusPilihanSemua);
+
+                if (statusSemua != null) {
+                    for (Report_Pengguna laporan : manager.getListLaporan()) {
+                        manager.updateStatusLaporan(laporan.getIdLaporan(), statusSemua);
+                    }
+                    System.out.println("Semua laporan berhasil diperbarui ke status: " + statusSemua);
+                } else {
+                    System.out.println("Pilihan status tidak valid.");
+                }
+            }
+
+            case 2 -> {
+                String idLaporan = UtilityClass.getStringInput(myObj, "Masukkan ID laporan: ");
+                manager.ViewLaporan();
+                System.out.println("Status yang akan diterapkan:");
+                System.out.println("1. PENDING");
+                System.out.println("2. IN_PROGRESS");
+                System.out.println("3. RESOLVED");
+                System.out.println("4. CLOSED");
+
+                int statusPilihanSatu = UtilityClass.getIntInput(myObj, "Pilih status: ");
+                Report_Pengguna.ReportStatus statusSatu = getStatusFromChoice(statusPilihanSatu);
+
+                if (statusSatu != null) {
+                    manager.updateStatusLaporan(idLaporan, statusSatu);
+                    System.out.println("Laporan dengan ID " + idLaporan + " berhasil diperbarui ke status: " + statusSatu);
+                } else {
+                    System.out.println("Pilihan status tidak harap masukkan angka yang tepat!.");
+                }
+            }
+
+            default -> System.out.println("Pilihan tidak valid.");
+        }
     }
+    
+    private Report_Pengguna.ReportStatus getStatusFromChoice(int choice) {
+        return switch (choice) {
+            case 1 -> Report_Pengguna.ReportStatus.PENDING;
+            case 2 -> Report_Pengguna.ReportStatus.IN_PROGRESS;
+            case 3 -> Report_Pengguna.ReportStatus.RESOLVED;
+            case 4 -> Report_Pengguna.ReportStatus.CLOSED;
+            default -> null;
+        };
+}
     
     public void HalamanAdmin() {
         while (true) {
@@ -86,7 +148,7 @@ public class Admin {
 
                 switch (pilihan) {
                     case 1 -> tambah_kategori();
-                    case 2 ->  UpdateStatusLaporan(pilihan);
+                    case 2 ->  UpdateStatusLaporan();
                     case 3 -> System.out.println(keluar());
                     default -> System.out.println("Pilihan tidak valid. Silakan coba lagi.");
                 }
