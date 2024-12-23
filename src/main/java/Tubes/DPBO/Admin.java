@@ -18,7 +18,7 @@ public class Admin {
     Scanner myObj = new Scanner(System.in);
     Kategori kategori = new Kategori();
     
-    public String login(String Nama_Pengguna, String Kata_Sandi) {
+    private String login(String Nama_Pengguna, String Kata_Sandi) {
         if (this.Nama_Pengguna.equals(Nama_Pengguna) && this.Kata_Sandi.equals(Kata_Sandi)) {
             return "Login Berhasil";
         }
@@ -26,7 +26,7 @@ public class Admin {
         return "Login Gagal, Silakan Coba Lagi";
     }
     
-    public String keluar() {
+    private String keluar() {
         return "Anda berhasil keluar";
     }
     
@@ -53,10 +53,9 @@ public class Admin {
         } catch (KategoriException e) {
             System.err.println("[Error] " + e.getMessage());
         }
-        
     }
     
-    public void UpdateStatusLaporan(int StatusLaporan) {
+    private void UpdateStatusLaporan(int StatusLaporan) {
         Report_Pengguna ReportPengguna = new Report_Pengguna();
         
     }

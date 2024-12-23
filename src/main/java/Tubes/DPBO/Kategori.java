@@ -17,8 +17,6 @@ import java.util.Scanner;
 public class Kategori {
     private String Nama_Kategori;
     private HashMap<String, ArrayList<Produk>> List_Kategori;
-    
-    UtilityClass util = new UtilityClass();
     Scanner myObj = new Scanner(System.in);
 
     public Kategori() {
@@ -49,7 +47,7 @@ public class Kategori {
             Object key = entry.getKey();
             System.out.println("-> " + key);
         }
-        String input = util.getStringInput(myObj, "Masukkan nama Kategori : ");
+        String input =UtilityClass.getStringInput(myObj, "Masukkan nama Kategori : ");
         List_Kategori.get(input).add(produk);
         
     }

@@ -9,79 +9,106 @@ package Tubes.DPBO;
  * @author USER
  */
 
+import java.util.Scanner;
+
 public class Pesanan {
-    private String Id_order;
-    private String Tanggal_pemesanan;
-    private String Status;
-    private int Harga;
+    private String id_Order;
+    private String tanggal_Pemesanan;
+    private String status;
+    private int harga;
+    private String jasaPengiriman; 
 
-    public Pesanan(String Id_order, String Tanggal_pemesanan, String Status, int Harga) {
-        this.Id_order = Id_order;
-        this.Tanggal_pemesanan = Tanggal_pemesanan;
-        this.Status = Status;
-        this.Harga = Harga;
+    public Pesanan(String id_Order, String tanggal_Pemesanan, String status, int harga) {
+        this.id_Order = id_Order;
+        this.tanggal_Pemesanan = tanggal_Pemesanan;
+        this.status = status;
+        this.harga = harga;
+        this.jasaPengiriman = ""; 
     }
 
-    public void Beli_barang(String Id_order, String Tanggal_pemesanan, int Harga) {
-        this.Id_order = Id_order;
-        this.Tanggal_pemesanan = Tanggal_pemesanan;
-        this.Harga = Harga;
-        this.Status = "Dipesan";
+    public String getId_Order() {
+        return id_Order;
     }
 
-    public boolean Pembayaran(String Id_order, String metodePembayaran) {
-        if (this.Id_order.equals(Id_order) && this.Status.equals("Dipesan")) {
-            this.Status = "Dibayar";
-            System.out.println("Pembayaran berhasil menggunakan metode: " + metodePembayaran);
-            return true;
-        }
-        System.out.println("Maaf, saat ini pembayaran anda sedang tidak bisa kami proses, dana anda sudah di refund.");
-        return false;
+    public void setId_Order(String id_Order) {
+        this.id_Order = id_Order;
     }
 
-    public void Review_barang(String Id_order, int rating, String Deskripsi_ulasan) {
-        if (this.Id_order.equals(Id_order) && this.Status.equals("Dibayar")) {
-            System.out.println("Ulasan untuk pesanan " + Id_order + ":");
-            System.out.println("Rating: " + rating);
-            System.out.println("Deskripsi: " + Deskripsi_ulasan);
-        } else {
-            System.out.println("Ulasan tidak dapat diberikan.");
-        }
-    }
-    
-    public void Mencari_barang(String nama_barang) {
-        System.out.println("Mencari barang: " + nama_barang);
+    public String getTanggalPemesanan() {
+        return tanggal_Pemesanan;
     }
 
-    public String getId_order() {
-        return Id_order;
-    }
-
-    public void setId_order(String Id_order) {
-        this.Id_order = Id_order;
-    }
-
-    public String getTanggal_pemesanan() {
-        return Tanggal_pemesanan;
-    }
-
-    public void setTanggal_pemesanan(String Tanggal_pemesanan) {
-        this.Tanggal_pemesanan = Tanggal_pemesanan;
+    public void setTanggal_Pemesanan(String tanggalPemesanan) {
+        this.tanggal_Pemesanan = tanggalPemesanan;
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
-    public void setStatus(String Status) {
-        this.Status = Status;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getHarga() {
-        return Harga;
+        return harga;
     }
 
-    public void setHarga(int Harga) {
-        this.Harga = Harga;
+    public void setHarga(int harga) {
+        this.harga = harga;
+    }
+
+    public String getJasaPengiriman() {
+        return jasaPengiriman;
+    }
+
+    public void setJasaPengiriman(String jasaPengiriman) {
+        this.jasaPengiriman = jasaPengiriman;
+    }
+    
+    public void beli_Barang(String idPesanan, String tanggalPemesanan, int harga) {
+        Scanner scanner = new Scanner(System.in);
+        
+        this.id_Order = idPesanan;
+        this.tanggal_Pemesanan = tanggalPemesanan;
+        this.harga = harga;
+        this.status = "Pesanan Dibuat";
+
+        System.out.println("Pilih jasa pengiriman:");
+        System.out.println("1. JNE");
+        System.out.println("2. SiCepat");
+        System.out.println("3. TIKI");
+        System.out.println("4. Pos Indonesia");
+        System.out.print("Masukkan pilihan (1-4): ");
+        int pilihan = scanner.nextInt();
+
+        switch (pilihan) {
+            case 1:
+                this.jasaPengiriman = "JNE";
+                break;
+            case 2:
+                this.jasaPengiriman = "SiCepat";
+                break;
+            case 3:
+                this.jasaPengiriman = "TIKI";
+                break;
+            case 4:
+                this.jasaPengiriman = "Pos Indonesia";
+                break;
+            default:
+                System.out.println("Pilihan tidak valid. Jasa pengiriman default: JNE");
+                this.jasaPengiriman = "JNE";
+                break;
+        }
+        System.out.println("Barang berhasil dipesan!");
+        System.out.println("Detail Pesanan:");
+        System.out.println("ID Pesanan: " + this.id_Order);
+        System.out.println("Tanggal Pemesanan: " + this.tanggal_Pemesanan);
+        System.out.println("Harga: " + this.harga);
+        System.out.println("Jasa Pengiriman: " + this.jasaPengiriman);
+    }
+
+    public void pembayaran(String idPesanan, String metode) {
+        System.out.println("Pembayaran untuk ID Pesanan " + idPesanan + " menggunakan metode " + metode + " berhasil!");
     }
 }

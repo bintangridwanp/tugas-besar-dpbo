@@ -1,49 +1,75 @@
 package Tubes.DPBO;
 
-import java.util.List;
-
 public class Ulasan {
-    private String Id_pembeli;
-    private String Tanggal;
-    private int Rating;
-    private String Deskripsi_ulasan;
+    private String id_Pembeli;
+    private String tanggal;
+    private int rating;
+    private String deskripsiUlasan;
 
-    public Ulasan(String Id_pembeli, String Tanggal, int Rating, String Deskripsi_ulasan) {
-        this.Id_pembeli = Id_pembeli;
-        this.Tanggal = Tanggal;
-        this.Rating = Rating;
-        this.Deskripsi_ulasan = Deskripsi_ulasan;
+    public Ulasan(String idPembeli, String tanggal, int rating, String deskripsiUlasan) {
+        this.id_Pembeli = idPembeli;
+        this.tanggal = tanggal;
+        this.rating = rating;
+        this.deskripsiUlasan = deskripsiUlasan;
     }
 
-    public String getId_pembeli() {
-        return Id_pembeli;
+    public String getId_Pembeli() {
+        return id_Pembeli;
+    }
+
+    public void setId_Pembeli(String id_Pembeli) {
+        this.id_Pembeli = id_Pembeli;
     }
 
     public String getTanggal() {
-        return Tanggal;
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
     }
 
     public int getRating() {
-        return Rating;
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public String getDeskripsi_ulasan() {
-        return Deskripsi_ulasan;
+        return deskripsiUlasan;
     }
 
-    public void setDeskripsi_ulasan(String Deskripsi_ulasan) {
-        this.Deskripsi_ulasan = Deskripsi_ulasan;
+    public void setDeskripsi_ulasan(String deskripsiUlasan) {
+        this.deskripsiUlasan = deskripsiUlasan;
     }
 
-    public static Ulasan Buat_ulasan(String Id_pembeli, String Tanggal, int Rating, String Deskripsi_ulasan) {
-        return new Ulasan(Id_pembeli, Tanggal, Rating, Deskripsi_ulasan);
+    public void Buat_ulasan(String idPembeli, String tanggal, int rating, String deskripsiUlasan) {
+        this.id_Pembeli = idPembeli;
+        this.tanggal = tanggal;
+        this.rating = rating;
+        this.deskripsiUlasan = deskripsiUlasan;
+        System.out.println("Ulasan berhasil dibuat!");
     }
 
-    public void Edit_ulasan(String Deskripsi_ulasan) {
-        this.setDeskripsi_ulasan(Deskripsi_ulasan);
+    public void Edit_ulasan(String idPembeli) {
+        if (this.id_Pembeli.equals(idPembeli)) {
+            System.out.println("Ulasan berhasil diubah!");
+        } else {
+            System.out.println("ID Pembeli tidak cocok!");
+        }
     }
 
-    public static void Hapus_ulasan(List<Ulasan> ulasanList, String Id_pembeli, String Tanggal) {
-        ulasanList.removeIf(ulasan -> ulasan.getId_pembeli().equals(Id_pembeli) && ulasan.getTanggal().equals(Tanggal));
+    public void Hapus_ulasan(String idPembeli, String tanggal) {
+        if (this.id_Pembeli.equals(idPembeli) && this.tanggal.equals(tanggal)) {
+            this.id_Pembeli = null;
+            this.tanggal = null;
+            this.rating = 0;
+            this.deskripsiUlasan = null;
+            System.out.println("Ulasan berhasil dihapus!");
+        } else {
+            System.out.println("Data tidak cocok untuk dihapus.");
+        }
     }
 }
