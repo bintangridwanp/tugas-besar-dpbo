@@ -1,6 +1,6 @@
 package Tubes.DPBO;
 
-public class Produk_Diskon extends Produk {
+public class Produk_Diskon extends Produk implements Diskon {
     private int Jumlah_diskon;
 
     public Produk_Diskon() {

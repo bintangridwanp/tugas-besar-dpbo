@@ -7,6 +7,7 @@ public class Produk {
     private int Stok;
     private String Lokasi;
     private String Deskripsi;
+    private Kategori Kategori_Produk;
 
     public Produk(){}
 
@@ -88,6 +89,14 @@ public class Produk {
 
     public void setDeskripsi(String deskripsi) {
         this.Deskripsi = deskripsi;
+    }
+
+    public Kategori getKategori_Produk() {
+        return Kategori_Produk;
+    }
+
+    public void setKategori_Produk(Kategori kategori_produk) {
+        this.Kategori_produk = kategori_produk;
     }
 
     @Override
