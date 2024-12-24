@@ -1,9 +1,6 @@
 package Tubes.DPBO;
 
 public interface Diskon {
-
-    public String getIdPengguna();
-
     public int getJumlah_diskon();
 
     public void setJumlah_diskon(int jumlah_diskon);
