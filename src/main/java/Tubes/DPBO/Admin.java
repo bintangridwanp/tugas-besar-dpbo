@@ -75,15 +75,8 @@ public class Admin {
 
                 int statusPilihanSemua = UtilityClass.getIntInput(myObj, "Pilih status: ");
                 Report_Pengguna.ReportStatus statusSemua = getStatusFromChoice(statusPilihanSemua);
-
-                if (statusSemua != null) {
-                    for (Report_Pengguna laporan : manager.getListLaporan()) {
-                        manager.updateStatusLaporan(laporan.getIdLaporan(), statusSemua);
-                    }
-                    System.out.println("Semua laporan berhasil diperbarui ke status: " + statusSemua);
-                } else {
-                    System.out.println("Pilihan status tidak valid.");
-                }
+                
+                
             }
 
             case 2 -> {

@@ -4,20 +4,20 @@
  */
 package Tubes.DPBO;
 
+import Tubes.DPBO.LaporanList.*;
 import Tubes.DPBO.Util.UtilityClass;
-import java.util.LinkedList;
 
 /**
  *
  * @author Zuhri
  */
 public class Laporan_Manager {
-    private LinkedList<Report_Pengguna> ListLaporanBaru = new LinkedList<>();
-    private LinkedList<Report_Pengguna> ListLaporanSelesai = new LinkedList<>();
-
-    public LinkedList<Report_Pengguna> getListLaporan() {
-        return ListLaporanBaru;
-    }
+    private ListLaporan listPending = new LaporanPENDING();
+    private ListLaporan listInProgress = new LaporanIN_PROGRESS();
+    private ListLaporan listResolved = new LaporanRESOLVED();
+    private ListLaporan listRejected = new LaporanREJECTED();
+    private ListLaporan listOnHold = new LaporanON_HOLD();
+    
     
     public void Buat_Laporan(String idPenggunaPelapor, String idPenggunaTerlapor, String deskripsiLaporan) {
         String waktuPelaporan = UtilityClass.Waktu_Sekarang();
@@ -32,8 +32,52 @@ public class Laporan_Manager {
             Report_Pengguna.ReportStatus.PENDING
         );
 
-        ListLaporanBaru.addLast(laporan);
+        listPending.addLaporan(laporan);
         System.out.println("Laporan berhasil dibuat dengan ID: " + idLaporan);
+    }
+
+    public void ViewLaporan() {
+        System.out.println("\n=== Daftar Laporan PENDING ===");
+        listPending.ViewLaporan();
+
+        System.out.println("\n=== Daftar Laporan IN_PROGRESS ===");
+        listInProgress.ViewLaporan();
+
+        System.out.println("\n=== Daftar Laporan RESOLVED ===");
+        listResolved.ViewLaporan();
+
+        System.out.println("\n=== Daftar Laporan REJECTED ===");
+        listRejected.ViewLaporan();
+
+        System.out.println("\n=== Daftar Laporan ON_HOLD ===");
+        listOnHold.ViewLaporan();
+    }
+
+    public void updateStatusLaporan(String idLaporan, Report_Pengguna.ReportStatus newStatus) {
+        Report_Pengguna laporan = null;
+
+        laporan = listPending.findAndRemoveLaporan(idLaporan);
+        if (laporan == null) laporan = listInProgress.findAndRemoveLaporan(idLaporan);
+        if (laporan == null) laporan = listResolved.findAndRemoveLaporan(idLaporan);
+        if (laporan == null) laporan = listRejected.findAndRemoveLaporan(idLaporan);
+        if (laporan == null) laporan = listOnHold.findAndRemoveLaporan(idLaporan);
+
+        if (laporan != null) {
+            laporan.setStatusLaporan(newStatus);
+
+            switch (newStatus) {
+                case PENDING -> listPending.addLaporan(laporan);
+                case IN_PROGRESS -> listInProgress.addLaporan(laporan);
+                case RESOLVED -> listResolved.addLaporan(laporan);
+                case REJECTED -> listRejected.addLaporan(laporan);
+                case ON_HOLD -> listOnHold.addLaporan(laporan);
+                case CLOSED -> System.out.println("Laporan dengan ID " + idLaporan + " ditutup.");
+                default -> System.out.println("Status tidak valid.");
+            }
+            System.out.println("Status laporan dengan ID " + idLaporan + " berhasil diperbarui ke " + newStatus);
+        } else {
+            System.out.println("Laporan dengan ID " + idLaporan + " tidak ditemukan.");
+        }
     }
 
     public void inisialisasiLaporanDummy() {
@@ -63,94 +107,6 @@ public class Laporan_Manager {
             String laporanDeskripsi = deskripsi[i % deskripsi.length];
 
             Buat_Laporan(idPelapor, idTerlapor, laporanDeskripsi);
-        }
-    }
-    
-    public void ViewLaporan() {
-        if (ListLaporanBaru.isEmpty()) {
-            System.out.println("Tidak ada laporan yang tersedia.");
-        } else {
-            System.out.println("Daftar Laporan:");
-            for (Report_Pengguna laporan : ListLaporanBaru) {
-                System.out.println("ID Laporan: " + laporan.getIdLaporan());
-                System.out.println("Pelapor: " + laporan.getIdPenggunaPelapor());
-                System.out.println("Terlapor: " + laporan.getIdPenggunaTerlapor());
-                System.out.println("Deskripsi: " + laporan.getDeskripsiLaporan());
-                System.out.println("Waktu: " + laporan.getWaktuPelaporan());
-                System.out.println("Status: " + laporan.getStatusLaporan());
-                System.out.println("--------------------------");
-            }
-        }
-    }
-
-    public void Hapus_Laporan(String idLaporan) {
-        Report_Pengguna laporanToRemove = null;
-
-        for (Report_Pengguna laporan : ListLaporanBaru) {
-            if (laporan.getIdLaporan().equals(idLaporan)) {
-                laporanToRemove = laporan;
-                break;
-            }
-        }
-
-        if (laporanToRemove != null) {
-            ListLaporanBaru.remove(laporanToRemove);
-            System.out.println("Laporan dengan ID " + idLaporan + " berhasil dihapus.");
-        } else {
-            System.out.println("Laporan dengan ID " + idLaporan + " tidak ditemukan.");
-        }
-    }
-
-    public void updateStatusLaporan(String idLaporan, Report_Pengguna.ReportStatus newStatus) {
-        for (Report_Pengguna laporan : ListLaporanBaru) {
-            if (laporan.getIdLaporan().equals(idLaporan)) {
-                laporan.setStatusLaporan(newStatus);
-                System.out.println("Status laporan dengan ID " + idLaporan + " berhasil diubah menjadi " + newStatus);
-                return;
-            }
-        }
-        System.out.println("Laporan dengan ID " + idLaporan + " tidak ditemukan.");
-    }
-
-    public void pindahkanLaporan(String idLaporan) {
-        Report_Pengguna laporanToMove = null;
-
-        for (Report_Pengguna laporan : ListLaporanBaru) {
-            if (laporan.getIdLaporan().equals(idLaporan)) {
-                laporanToMove = laporan;
-                break;
-            }
-        }
-
-        if (laporanToMove != null) {
-            if (laporanToMove.getStatusLaporan() == Report_Pengguna.ReportStatus.RESOLVED || 
-                laporanToMove.getStatusLaporan() == Report_Pengguna.ReportStatus.CLOSED) {
-                
-                ListLaporanBaru.remove(laporanToMove);
-                ListLaporanSelesai.add(laporanToMove);
-                System.out.println("Laporan dengan ID " + idLaporan + " berhasil dipindahkan ke daftar laporan selesai.");
-            } else {
-                System.out.println("Laporan dengan ID " + idLaporan + " tidak memiliki status RESOLVED atau CLOSED.");
-            }
-        } else {
-            System.out.println("Laporan dengan ID " + idLaporan + " tidak ditemukan.");
-        }
-    }
-
-    public void ViewLaporanSelesai() {
-        if (ListLaporanSelesai.isEmpty()) {
-            System.out.println("Tidak ada laporan selesai yang tersedia.");
-        } else {
-            System.out.println("Daftar Laporan Selesai:");
-            for (Report_Pengguna laporan : ListLaporanSelesai) {
-                System.out.println("ID Laporan \t: " + laporan.getIdLaporan());
-                System.out.println("Pelapor \t: " + laporan.getIdPenggunaPelapor());
-                System.out.println("Terlapor \t: " + laporan.getIdPenggunaTerlapor());
-                System.out.println("Deskripsi \t: " + laporan.getDeskripsiLaporan());
-                System.out.println("Waktu \t: " + laporan.getWaktuPelaporan());
-                System.out.println("Status \t: " + laporan.getStatusLaporan());
-                System.out.println("--------------------------");
-            }
         }
     }
 }
