@@ -1,11 +1,12 @@
 package tubes.main;
 
 import akun.ManajerAkun;
+import pengguna.Penawaran;
 import produk.Produk;
 import transaksi.Pemesanan;
 import pengguna.PembeliPenjual;
 import pengguna.Pengguna;
-import komunikasi.Chat;
+import Komunikasi.Chat;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -17,10 +18,14 @@ import produk.Review;
     public class BarangManagement {
         private ArrayList<Produk> barangJualan = new ArrayList<>();
         private ManajerAkun manajerAkun;
+        private ArrayList<Penawaran> penawaranList;
+
 
         // Konstruktor untuk menerima ManajerAkun
         public BarangManagement(ManajerAkun manajerAkun) {
             this.manajerAkun = manajerAkun;
+            this.penawaranList = new ArrayList<>();
+
         }
 
         public Produk cariBarang(String idProduk) {
@@ -553,4 +558,63 @@ import produk.Review;
                 break;
         }
     }
+
+        public ArrayList<Produk> getBarangJualan() {
+            return barangJualan;
+        }
+
+        public void buatPenawaran(PembeliPenjual pembeli, Produk barang, double hargaPenawaran) {
+            // Validasi: pembeli harus berbeda dari penjual
+            if (barang.getPenjual().getUsername().equals(pembeli.getUsername())) {
+                System.out.println("Anda tidak dapat membuat penawaran untuk barang Anda sendiri.");
+                return;
+            }
+    
+            // Buat ID penawaran
+            String id = "PNWR-" + (penawaranList.size() + 1);
+            Penawaran penawaran = new Penawaran(id, pembeli, barang, hargaPenawaran);
+            penawaranList.add(penawaran);
+    
+            // Kirim notifikasi ke penjual
+            String pesan = "Penawaran baru untuk barang: " + barang.getNamaProduk() + " oleh " + pembeli.getUsername();
+            barang.getPenjual().tambahNotifikasi(pesan);
+            System.out.println("Penawaran berhasil dibuat!");
+        }
+
+        public void handleBuatPenawaran(PembeliPenjual penggunaAktif) {
+            // Tampilkan daftar barang yang dijual
+            lihatBarangJualan(); // Memastikan hanya barang jualan (bukan milik seller)
+
+            System.out.print("Masukkan ID barang yang ingin Anda tawar: ");
+            String idBarang = Utils.inputString();
+            Produk barang = null;
+
+            // Cari barang berdasarkan ID
+            for (Produk produk : getBarangJualan()) {
+                if (produk.getIdProduk().equals(idBarang)) {
+                    barang = produk;
+                    break;
+                }
+            }
+
+            // Validasi jika barang tidak ditemukan
+            if (barang == null) {
+                System.out.println("Barang dengan ID tersebut tidak ditemukan.");
+                return; // Keluar dari method
+            }
+
+            // Input harga penawaran
+            System.out.print("Masukkan harga penawaran: ");
+            double hargaPenawaran = Utils.inputDouble();
+
+            // Buat penawaran
+            buatPenawaran(penggunaAktif, barang, hargaPenawaran);
+        }
+    
+        public void tampilkanPenawaran() {
+            System.out.println("Daftar Penawaran:");
+            for (Penawaran penawaran : penawaranList) {
+                penawaran.tampilkanPenawaran();
+            }
+        }
 }

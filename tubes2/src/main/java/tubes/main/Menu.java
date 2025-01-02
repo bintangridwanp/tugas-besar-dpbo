@@ -70,6 +70,12 @@ public class Menu {
                 case 15:
                     barangManagement.ubahStatusPengiriman(penggunaAktif);
                     break;
+                case 16:
+                    barangManagement.handleBuatPenawaran(penggunaAktif);
+                    break;
+                case 17:
+                barangManagement.tampilkanPenawaran();
+                break;
                 default:
                     System.out.println("Menu tidak valid.");
                     break;
@@ -103,6 +109,8 @@ public class Menu {
         System.out.println("13. Chat");
         System.out.println("14. [System] Daftar Akun Pengguna");
         System.out.println("15. Ubah Status Pengiriman Barang");
+        System.out.println("16. Buat Penawaran");
+        System.out.println("17. Lihat Notifikasi");
         System.out.println("0. Keluar");
         System.out.println("=================================================");
         System.out.print("> Input Menu : ");

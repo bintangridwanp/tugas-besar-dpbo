@@ -1,5 +1,6 @@
 package pengguna;
 
+import Komunikasi.Notifikasi;
 import produk.Produk;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,11 +11,13 @@ public class PembeliPenjual extends Pengguna {
     private Map<Produk, Integer> keranjang; //untuk checkout barang
     private ArrayList<Produk> barangJualan;
     private ArrayList<Pemesanan> daftarPemesanan = new ArrayList<>();  //untuk pelacakan barang
-    
+    private ArrayList<Notifikasi> notifikasiList;
+
     public PembeliPenjual(String username, String password, String email, String noTelepon) {
         super(username, password, email, noTelepon);
         this.keranjang = new HashMap<>();
         this.barangJualan = new ArrayList<>();
+        this.notifikasiList = new ArrayList<>();
     }
 
     // Menambah barang ke keranjang
@@ -55,5 +58,19 @@ public class PembeliPenjual extends Pengguna {
     
     public ArrayList<Pemesanan> getDaftarPemesanan() {
         return daftarPemesanan;
+    }
+
+    public void tambahNotifikasi(String pesan) {
+        String id = "NOTIF-" + (notifikasiList.size() + 1);
+        Notifikasi notif = new Notifikasi();
+        notif.kirimNotifikasi(id, pesan);
+        notifikasiList.add(notif);
+    }
+
+    public void tampilkanSemuaNotifikasi() {
+        System.out.println("Daftar Notifikasi:");
+        for (Notifikasi notif : notifikasiList) {
+            notif.lihatNotifikasi(notifikasiList.toString());
+        }
     }
 }

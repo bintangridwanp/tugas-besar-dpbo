@@ -1,4 +1,4 @@
-package komunikasi;
+package Komunikasi;
 
 import pengguna.PembeliPenjual;
 import java.util.ArrayList;
