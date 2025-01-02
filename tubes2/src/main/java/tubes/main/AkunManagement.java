@@ -11,7 +11,7 @@ public class AkunManagement {
     private PembeliPenjual penggunaAktif = null;
 
     public void handleRegistrasi() {
-        System.out.println("===== Registrasi =====");
+        System.out.println("=====================Registrsi=====================");
         System.out.print("Masukkan username: ");
         String username = Utils.inputString();
         System.out.print("Masukkan password: ");
@@ -25,18 +25,22 @@ public class AkunManagement {
         try {
             manajerAkun.register(username, password, email, noTelepon);
             System.out.println("Registrasi berhasil!");
+            System.out.println("==================================================");
         } catch (Exception e) {
             System.out.println("[Error] " + e.getMessage());
+            System.out.println("==================================================");
         }
     }
 
     public void handleLogin() {
         if (penggunaAktif != null) {
-            System.out.println("Anda sudah login sebagai: " + penggunaAktif.getUsername());
+            System.out.println("|==================================================|");
+            System.out.println("|Anda sudah login sebagai: " + penggunaAktif.getUsername() + "|");
+            System.out.println("|================================================== |");
             return; // Jika sudah login, jangan login lagi
         }
 
-        System.out.println("===== Login =====");
+        System.out.println("======================Login======================");
         System.out.print("Masukkan username: ");
         String username = Utils.inputString();
         System.out.print("Masukkan password: ");
@@ -45,18 +49,24 @@ public class AkunManagement {
         // Login pengguna
         try {
             penggunaAktif = (PembeliPenjual) manajerAkun.login(username, password);
-            System.out.println("Login berhasil! Selamat datang, " + penggunaAktif.getUsername());
+            System.out.println("\n");
+            System.out.println("==================================================");
+            System.out.println("Login berhasil! Selamat datang, " + penggunaAktif.getUsername() + "|");
+            System.out.println("==================================================");
         } catch (Exception e) {
             System.out.println("[Error] " + e.getMessage());
+            System.out.println("==================================================");
         }
     }
 
     public void handleLogout() {
         if (penggunaAktif != null) {
             System.out.println("Anda telah logout.");
+            System.out.println("==================================================");
             penggunaAktif = null;
         } else {
             System.out.println("Tidak ada akun yang sedang login.");
+            System.out.println("==================================================");
         }
     }
     
@@ -64,15 +74,16 @@ public class AkunManagement {
         HashMap<String, Pengguna> daftarPengguna = manajerAkun.getDaftarPengguna();
         if(daftarPengguna == null || daftarPengguna.isEmpty()) {
             System.out.println("Tidak ada akun pengguna yang terdaftar saat ini.");
+            System.out.println("==================================================");
         } else {
             System.out.println("[System] Daftar akun pengguna : ");
             System.out.printf("%-3s %-14s %-14s\n", "No.", "Nama Pengguna", "Email");
-            System.out.println("===============================");
+            System.out.println("==================================================");
             int nomor = 1;
             for (Pengguna pengguna : daftarPengguna.values()) {
                 System.out.printf("%-3s %-14s %-14s\n", nomor++, pengguna.getUsername(), pengguna.getEmail());
             }
-            System.out.println("===============================");
+            System.out.println(" ");
         }
     }
     
