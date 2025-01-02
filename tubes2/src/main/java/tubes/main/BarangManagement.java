@@ -570,12 +570,12 @@ import produk.Review;
                 System.out.println("Anda tidak dapat membuat penawaran untuk barang Anda sendiri.");
                 return;
             }
-    
+
             // Buat ID penawaran
             String id = "PNWR-" + (penawaranList.size() + 1);
             Penawaran penawaran = new Penawaran(id, pembeli, barang, hargaPenawaran);
             penawaranList.add(penawaran);
-    
+
             // Kirim notifikasi ke penjual
             String pesan = "Penawaran baru untuk barang: " + barang.getNamaProduk() + " oleh " + pembeli.getUsername();
             barang.getPenjual().tambahNotifikasi(pesan);
@@ -583,20 +583,8 @@ import produk.Review;
         }
 
         public void handleBuatPenawaran(PembeliPenjual penggunaAktif) {
-            // Tampilkan daftar penawaran terlebih dahulu
-            if (penawaranList.isEmpty()) {
-                System.out.println("[Info] Tidak ada penawaran yang tersedia saat ini.");
-                return; // Keluar karena tidak ada penawaran
-            }
-
             // Tampilkan daftar barang yang dijual
             lihatBarangJualan(); // Memastikan hanya barang jualan (bukan milik seller)
-
-            // Validasi jika tidak ada barang yang dijual
-            if (getBarangJualan().isEmpty()) {
-                System.out.println("[Info] Tidak ada barang yang tersedia untuk ditawar.");
-                return; // Keluar karena tidak ada barang dijual
-            }
 
             System.out.print("Masukkan ID barang yang ingin Anda tawar: ");
             String idBarang = Utils.inputString();
