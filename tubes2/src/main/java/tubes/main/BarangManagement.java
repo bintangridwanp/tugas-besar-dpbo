@@ -565,32 +565,27 @@ import produk.Review;
         }
 
         public void buatPenawaran(PembeliPenjual pembeli, Produk barang, double hargaPenawaran) {
-            // Validasi: pembeli harus berbeda dari penjual
             if (barang.getPenjual().getUsername().equals(pembeli.getUsername())) {
                 System.out.println("Anda tidak dapat membuat penawaran untuk barang Anda sendiri.");
                 return;
             }
 
-            // Buat ID penawaran
             String id = "PNWR-" + (penawaranList.size() + 1);
             Penawaran penawaran = new Penawaran(id, pembeli, barang, hargaPenawaran);
             penawaranList.add(penawaran);
 
-            // Kirim notifikasi ke penjual
             String pesan = "Penawaran baru untuk barang: " + barang.getNamaProduk() + " oleh " + pembeli.getUsername();
             barang.getPenjual().tambahNotifikasi(pesan);
             System.out.println("Penawaran berhasil dibuat!");
         }
 
         public void handleBuatPenawaran(PembeliPenjual penggunaAktif) {
-            // Tampilkan daftar barang yang dijual
-            lihatBarangJualan(); // Memastikan hanya barang jualan (bukan milik seller)
+            lihatBarangJualan();
 
             System.out.print("Masukkan ID barang yang ingin Anda tawar: ");
             String idBarang = Utils.inputString();
             Produk barang = null;
 
-            // Cari barang berdasarkan ID
             for (Produk produk : getBarangJualan()) {
                 if (produk.getIdProduk().equals(idBarang)) {
                     barang = produk;
@@ -598,17 +593,14 @@ import produk.Review;
                 }
             }
 
-            // Validasi jika barang tidak ditemukan
             if (barang == null) {
                 System.out.println("Barang dengan ID tersebut tidak ditemukan.");
-                return; // Keluar dari method
+                return;
             }
 
-            // Input harga penawaran
             System.out.print("Masukkan harga penawaran: ");
             double hargaPenawaran = Utils.inputDouble();
 
-            // Buat penawaran
             buatPenawaran(penggunaAktif, barang, hargaPenawaran);
         }
     
