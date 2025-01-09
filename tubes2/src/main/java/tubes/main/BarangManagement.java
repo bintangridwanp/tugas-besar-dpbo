@@ -41,7 +41,8 @@ import produk.Review;
         }
 
     public void lihatBarangJualan() {
-        System.out.println("===== Daftar Barang Yang Dijual =====");
+        System.out.println("===========Daftar Barang Yang Dijual============");
+
         if (barangJualan.isEmpty()) {
             System.out.println("Tidak ada barang yang dijual.");
             return;
@@ -153,7 +154,7 @@ import produk.Review;
         }
 
         double totalHarga = 0;
-        System.out.println("===== Daftar Barang yang Dibeli =====");
+        System.out.println("======== Daftar Barang yang Dibeli ========");
         for (Map.Entry<Produk, Integer> entry : penggunaAktif.getKeranjang().entrySet()) {
             Produk produk = entry.getKey();
             int jumlah = entry.getValue();
@@ -390,7 +391,7 @@ import produk.Review;
             System.out.println("Harap login terlebih dahulu!");
             return;
         }
-        System.out.println("===== Barang Jualan Anda =====");
+        System.out.println("===============Barang Jualan Anda================");
         if (penggunaAktif.getBarangJualan().isEmpty()) {
             System.out.println("Anda belum memiliki barang yang dijual.");
         } else {
@@ -408,8 +409,8 @@ import produk.Review;
         
         double harga = -1;
         int stok = -1;
-        
-        System.out.println("===== Tambah Barang yang Dijual =====");
+
+        System.out.println("===========Tambah Barang yang Dijual============");
         System.out.print("Masukkan nama barang: ");
         String namaBarang = Utils.inputString();
         
@@ -447,7 +448,7 @@ import produk.Review;
             return;
         }
 
-        System.out.println("===== Daftar Barang Jualan Anda =====");
+        System.out.println("===========Daftar Barang Jualan Andal============");
         if (penggunaAktif.getBarangJualan().isEmpty()) {
             System.out.println("Anda belum memiliki barang yang dijual.");
             return;
@@ -500,7 +501,7 @@ import produk.Review;
         }
         
         // Menampilkan daftar barang jualan
-        System.out.println("===== Daftar Barang Jualan Anda =====");
+        System.out.println("===========Daftar Barang Jualan Anda============");
         for (int i = 0; i < barangDijual.size(); i++) {
             Produk produk = barangDijual.get(i);
             System.out.printf("%d. %s (ID: %s)\n", i + 1, produk.getNamaProduk(), produk.getIdProduk());
@@ -527,7 +528,7 @@ import produk.Review;
             System.out.println("Harap login terlebih dahulu!");
             return;
         }
-        System.out.println("===== Fitur Chat =====");
+        System.out.println("=================Fitur Chat==================");
         System.out.println("1. Kirim pesan");
         System.out.println("2. Lihat riwayat chat");
         System.out.print("> Pilih opsi: ");
@@ -564,32 +565,27 @@ import produk.Review;
         }
 
         public void buatPenawaran(PembeliPenjual pembeli, Produk barang, double hargaPenawaran) {
-            // Validasi: pembeli harus berbeda dari penjual
             if (barang.getPenjual().getUsername().equals(pembeli.getUsername())) {
                 System.out.println("Anda tidak dapat membuat penawaran untuk barang Anda sendiri.");
                 return;
             }
-    
-            // Buat ID penawaran
+
             String id = "PNWR-" + (penawaranList.size() + 1);
             Penawaran penawaran = new Penawaran(id, pembeli, barang, hargaPenawaran);
             penawaranList.add(penawaran);
-    
-            // Kirim notifikasi ke penjual
+
             String pesan = "Penawaran baru untuk barang: " + barang.getNamaProduk() + " oleh " + pembeli.getUsername();
             barang.getPenjual().tambahNotifikasi(pesan);
             System.out.println("Penawaran berhasil dibuat!");
         }
 
         public void handleBuatPenawaran(PembeliPenjual penggunaAktif) {
-            // Tampilkan daftar barang yang dijual
-            lihatBarangJualan(); // Memastikan hanya barang jualan (bukan milik seller)
+            lihatBarangJualan();
 
             System.out.print("Masukkan ID barang yang ingin Anda tawar: ");
             String idBarang = Utils.inputString();
             Produk barang = null;
 
-            // Cari barang berdasarkan ID
             for (Produk produk : getBarangJualan()) {
                 if (produk.getIdProduk().equals(idBarang)) {
                     barang = produk;
@@ -597,17 +593,14 @@ import produk.Review;
                 }
             }
 
-            // Validasi jika barang tidak ditemukan
             if (barang == null) {
                 System.out.println("Barang dengan ID tersebut tidak ditemukan.");
-                return; // Keluar dari method
+                return;
             }
 
-            // Input harga penawaran
             System.out.print("Masukkan harga penawaran: ");
             double hargaPenawaran = Utils.inputDouble();
 
-            // Buat penawaran
             buatPenawaran(penggunaAktif, barang, hargaPenawaran);
         }
     
